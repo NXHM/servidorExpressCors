@@ -34,10 +34,14 @@ function App() {
     evt.preventDefault();
     let myForm = document.getElementById("miFormulario");
     let myFormData = new FormData(myForm);
-    myFormData.append("password", "123456");
-    fetch("http://localhost:3001  /alumnos-form",{
+    let objJson=JSON.stringify(Object.fromEntries(myFormData));
+    //myFormData.append("password", "123456");
+    fetch("http://localhost:3001/alumnos-form",{
       method: 'POST',
-      body: myFormData
+      body: objJson,
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
       .then(verificarEstado) //verificar estatus
       .then(response => response.text()) // extraer la data , retornar un texto
@@ -56,9 +60,8 @@ function App() {
       <form id="miFormulario" method="post" action="http://localhost:3001/alumnos-form">
         Codigo: <input type="text" name="codigo"></input><br />
         Nombre: <input type="text" name="nombre"></input><br />
-        Apellidos: <input type="text" name="apellidos"></input><br />
-        Comentario: <textarea type="text" name="comentario"></textarea><br />
-        <button type="submit" >Enviar datos</button>
+        
+        <button type="submit" onClick={handleSubmit}>Enviar datos</button>
       </form>
 
       <br></br>
