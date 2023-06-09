@@ -37,10 +37,11 @@ app.get('/alumnos-query', function (req, res) {
 app.post('/alumnos-form', function (req, res) {
     var codigo = req.body.codigo;
     var nombre = req.body.nombre;
-    //var apellidos = req.body.apellidos;
+    var apellidos = req.body.apellidos;
     //var comentario = req.body.comentario;
     res.send(`Tipo FORM<br/><h1>Codigo: ${codigo}</h1>
     <h2>Nombre Completo: ${nombre} </h2>
+    <h2>Apellidos: ${apellidos} </h2>
     `);
     //var obj = {
      //   "codigo": { codigo },
